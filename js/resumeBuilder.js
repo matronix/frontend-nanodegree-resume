@@ -53,17 +53,36 @@ $("#skills").append(formattedSkills2);
 
 
 var work = {
-		"position": "CTO",
-		"name": "Labornique Inc.",
-		"years": "14"		
+		"job1":{"position": "CTO",
+			"name": "Labornique Inc.",
+			"years": "8",
+			"dates": "2007-2016",
+			"city": "Raleigh, NC"},
+			
+			"job2":{
+				"position": "Founder",
+				"name": "Matronix Inc.",
+				"years": "4",
+				"dates": "2004-2007",
+				"city": "Los Angeles, CA"
+			},
+			
+			"job3":{"position": "Head of R&D",
+			"name": "Cypress Semiconductor INC.",
+			"years": "2",
+			"dates": "2002-2004",
+			"city": "Lexington, KY"}
+		
 };
 
-work.city = "Raleigh, NC";
-
-var employer = HTMLworkEmployer.replace("%data%", work.name);
-var title = HTMLworkTitle.replace("%data%", work["position"]);
+//work.city = "Raleigh, NC";
+for(var i in work){
+var employer = HTMLworkEmployer.replace("%data%", work[i].name);
+var title = HTMLworkTitle.replace("%data%", work[i].position);
 $("#workExperience").append(HTMLworkStart);
-$(".work-entry").append(employer+title);
+$(".work-entry:last").append(employer+title);
+}
+
 
 var projects = {
 		"title": "Connecting skilled people with those who need them",
