@@ -10,6 +10,7 @@ var bio = {
 		"pic_URL": "https://lh6.googleusercontent.com/-CIcLGI6bIgs/AAAAAAAAAAI/AAAAAAAAAN0/A9h-OexZHLM/photo.jpg",
 		"msg": "Welcome to my resume page. Please fee free to look around and see what I can do for you to achieve your goals",
 		"skills": ["Web Apps", "business solutions", "websites"]
+		//"skills": []
 		
 };
 
@@ -23,9 +24,7 @@ formattedTwitter = HTMLtwitter.replace("%data%", bio.contact.twitter);
 formattedGit = HTMLgithub.replace("%data%", bio.contact.github);
 formattedPic = HTMLbioPic.replace("%data%", bio.pic_URL);
 formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.msg);
-formattedSkills0 = HTMLskills.replace("%data%", bio.skills[0]);
-formattedSkills1 = HTMLskills.replace("%data%", bio.skills[1]);
-formattedSkills2 = HTMLskills.replace("%data%", bio.skills[2]);
+
 
 
 
@@ -39,11 +38,18 @@ $("#topContacts").append(formattedMobile);
 $("#topContacts").append(formattedTwitter);
 $("#topContacts").append(formattedGit);
 
-
+if(bio.skills===undefined){
+  ;	
+}
+else if(bio.skills.length>0){
+	formattedSkills0 = HTMLskills.replace("%data%", bio.skills[0]);
+	formattedSkills1 = HTMLskills.replace("%data%", bio.skills[1]);
+	formattedSkills2 = HTMLskills.replace("%data%", bio.skills[2]);
 $("#header").append(HTMLskillsStart);
 $("#skills").append(formattedSkills0);
 $("#skills").append(formattedSkills1);
 $("#skills").append(formattedSkills2);
+}
 
 
 var work = {
@@ -54,10 +60,10 @@ var work = {
 
 work.city = "Raleigh, NC";
 
-/*var employer = HTMLworkEmployer.replace("%data%", work.name);
+var employer = HTMLworkEmployer.replace("%data%", work.name);
 var title = HTMLworkTitle.replace("%data%", work["position"]);
 $("#workExperience").append(HTMLworkStart);
-$(".work-entry").append(employer+title);*/
+$(".work-entry").append(employer+title);
 
 var projects = {
 		"title": "Connecting skilled people with those who need them",
