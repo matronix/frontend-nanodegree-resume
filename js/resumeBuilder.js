@@ -53,14 +53,18 @@ $("#skills").append(formattedSkills2);
 
 
 var work = {
-		"job1":{"position": "CTO",
-			"name": "Labornique Inc.",
-			"years": "8",
-			"dates": "2007 to 2016",
-			"location": "Raleigh, NC",
-			"description": "Developed various web-app technologies and filed patents to make automated websites for targetted industries"},
+		
+		"jobs": 
 			
-			"job2":{
+			[{
+				"position": "CTO",
+			    "name": "Labornique Inc.",
+			    "years": "8",
+			    "dates": "2007 to 2016",
+			    "location": "Raleigh, NC",
+			    "description": "Developed various web-app technologies and filed patents to make automated websites for targetted industries"},
+			
+			{
 				"position": "Founder",
 				"name": "Matronix Inc.",
 				"years": "4",
@@ -70,30 +74,31 @@ var work = {
 					
 			},
 			
-			"job3":{"position": "Head of R&D",
-			"name": "Cypress Semiconductor INC.",
-			"years": "2",
-			"dates": "2002 to 2004",
-			"location": "Lexington, KY",
-			"description": "Worked on various semiconductor technologies"}
-		
+			{
+				"position": "Head of R&D",
+				"name": "Cypress Semiconductor INC.",
+				"years": "2",
+				"dates": "2002 to 2004",
+				"location": "Lexington, KY",
+				"description": "Worked on various semiconductor technologies"}]
+			
 };
 
 
 var displayWork = function(){
-	for(var i in work){
-		if(work.hasOwnProperty(i)){var employer = HTMLworkEmployer.replace("%data%", work[i].name);
-		var title = HTMLworkTitle.replace("%data%", work[i].position);
-		var dates = HTMLworkDates.replace("%data%", work[i].dates);
-		var city = HTMLworkLocation.replace("%data%", work[i].location);
-		var description = HTMLworkDescription.replace("%data%", work[i].description);
+	work.jobs.forEach(function(job){
+		var employer = HTMLworkEmployer.replace("%data%", job.name);
+		var title = HTMLworkTitle.replace("%data%", job.position);
+		var dates = HTMLworkDates.replace("%data%", job.dates);
+		var city = HTMLworkLocation.replace("%data%", job.location);
+		var description = HTMLworkDescription.replace("%data%", job.description);
 		$("#workExperience").append(HTMLworkStart);
 		$(".work-entry:last").append(employer+title);
 		$(".work-entry:last").append(dates);
 		$(".work-entry:last").append(city);
 		$(".work-entry:last").append(description);
-		}
-	}
+		
+	});
 }
 
 displayWork();
@@ -173,6 +178,7 @@ $(".education-entry").append(major);
 
 $("#main").append(internationalizeButton);
 
-
+//Appending the googleMaps map var to the #mapDiv
+$("#mapDiv").append(googleMap);
 
 
