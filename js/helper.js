@@ -33,7 +33,7 @@ var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
 var HTMLworkTitle = ' - %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
-var HTMLworkLocation = '<div class="location-text">%data%</div>';
+var HTMLworkLocation = '<div class="location-text"><br>%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
 
 var HTMLprojectStart = '<div class="project-entry"></div>';
@@ -46,7 +46,7 @@ var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
 var HTMLschoolDegree = ' -- %data%</a>';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
+var HTMLschoolLocation = '<div class="location-text"><br>%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
@@ -59,12 +59,29 @@ var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
 
+var inName = function(name){
+	
+	var nameArray = name.trim().split(" ");
+	var firstName = nameArray[0].toLowerCase();
+	var firstNameCap = firstName[0].toUpperCase()+firstName.slice(1);
+	var lastName = nameArray[nameArray.length-1];
+	var lastNameCap = lastName.toUpperCase();
+	var newNameArray = [];
+	newNameArray.push(firstNameCap);
+	for(var i = 1;i<nameArray.length-1;i++){
+		newNameArray.push(nameArray[i]);
+	}
+	newNameArray.push(lastNameCap);
+	return newNameArray.join(' ');
+	
+}
+
 /*
 The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
   $('button').click(function() {
-    var iName = inName() || function(){};
+    var iName = inName($("#name").text()) || function(){};
     $('#name').html(iName);  
   });
 });

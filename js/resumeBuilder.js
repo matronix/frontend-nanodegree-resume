@@ -10,7 +10,7 @@ var bio = {
 		"pic_URL": "https://lh6.googleusercontent.com/-CIcLGI6bIgs/AAAAAAAAAAI/AAAAAAAAAN0/A9h-OexZHLM/photo.jpg",
 		"msg": "Welcome to my resume page. Please fee free to look around and see what I can do for you to achieve your goals",
 		"skills": ["Web Apps", "business solutions", "websites"]
-		//"skills": []
+		
 		
 };
 
@@ -56,47 +56,85 @@ var work = {
 		"job1":{"position": "CTO",
 			"name": "Labornique Inc.",
 			"years": "8",
-			"dates": "2007-2016",
-			"city": "Raleigh, NC"},
+			"dates": "2007 to 2016",
+			"location": "Raleigh, NC",
+			"description": "Developed various web-app technologies and filed patents to make automated websites for targetted industries"},
 			
 			"job2":{
 				"position": "Founder",
 				"name": "Matronix Inc.",
 				"years": "4",
-				"dates": "2004-2007",
-				"city": "Los Angeles, CA"
+				"dates": "2004 to 2007",
+				"location": "Los Angeles, CA",
+				"description": "Founded a company that develops hardware to connect apps to devices and IOT"
+					
 			},
 			
 			"job3":{"position": "Head of R&D",
 			"name": "Cypress Semiconductor INC.",
 			"years": "2",
-			"dates": "2002-2004",
-			"city": "Lexington, KY"}
+			"dates": "2002 to 2004",
+			"location": "Lexington, KY",
+			"description": "Worked on various semiconductor technologies"}
 		
 };
 
-//work.city = "Raleigh, NC";
-for(var i in work){
-var employer = HTMLworkEmployer.replace("%data%", work[i].name);
-var title = HTMLworkTitle.replace("%data%", work[i].position);
-$("#workExperience").append(HTMLworkStart);
-$(".work-entry:last").append(employer+title);
+
+var displayWork = function(){
+	for(var i in work){
+		if(work.hasOwnProperty(i)){var employer = HTMLworkEmployer.replace("%data%", work[i].name);
+		var title = HTMLworkTitle.replace("%data%", work[i].position);
+		var dates = HTMLworkDates.replace("%data%", work[i].dates);
+		var city = HTMLworkLocation.replace("%data%", work[i].location);
+		var description = HTMLworkDescription.replace("%data%", work[i].description);
+		$("#workExperience").append(HTMLworkStart);
+		$(".work-entry:last").append(employer+title);
+		$(".work-entry:last").append(dates);
+		$(".work-entry:last").append(city);
+		$(".work-entry:last").append(description);
+		}
+	}
 }
+
+displayWork();
+
+
 
 
 var projects = {
-		"title": "Connecting skilled people with those who need them",
-		"date": "Jan 2014 - Dec 2016",
-		"description": "We have mastered the technology of connecting people...specificlly connecting skilled people with those who need those skills"
+		"projects":{
+			"project1":{"title": "Connecting skilled people with those who need them",
+				"date": "Jan 2014 - Dec 2016",
+				"description": "We have mastered the technology of connecting people...specificlly connecting skilled people with those who need those skills"},
+	 
+	        "project2":{"title": "Implementing a reverse bid system",
+		        "date": "Jan 2007 - Dec 2013",
+		        "description": "Bid better than eBay."}
+		}
+				
+
 };
 
-$("#projects").append(HTMLprojectStart);
-var title = HTMLprojectTitle.replace("%data%", projects.title);
-$(".project-entry").append(title);
-var projDates = HTMLprojectDates.replace("%data%", projects.date);
-$(".project-entry").append(projDates);
-var projDescr = HTMLprojectDescription.replace("%data%", projects.description);
-$(".project-entry").append(projDescr);
+
+projects.display = function(){
+	for(var project in projects.projects){
+		if(projects.projects.hasOwnProperty(project)){
+			$("#projects").append(HTMLprojectStart);
+			var title = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+			$(".project-entry:last").append(title);
+			var projDates = HTMLprojectDates.replace("%data%", projects.projects[project].date);
+			$(".project-entry:last").append(projDates);
+			var projDescr = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+			$(".project-entry:last").append(projDescr);
+			
+		}
+	}
+	
+}
+
+projects.display();
+
+
 
 
 var education = {
@@ -133,6 +171,7 @@ var major = HTMLschoolMajor.replace("%data%", education.univPG.degree);
 $(".education-entry").append(major);
 
 
+$("#main").append(internationalizeButton);
 
 
 
